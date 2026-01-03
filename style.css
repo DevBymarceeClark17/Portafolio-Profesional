@@ -253,9 +253,11 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
     .hero-content { padding: 30px 20px; }
     
     .about-container { flex-direction: column; text-align: center; padding: 30px; }
-    .about-img { width: 200px; height: 200px; }
+    .about-img { width: 200px; height: 200px; flexÑ 0 0 auto; margin: 0 auto 30px; }
     .about-stats { justify-content: center; }
     .section { padding: 80px 5%; }
+
+
 }
 /* --- OPTIMIZACIÓN MÓVIL EXTREMA --- */
 @media (max-width: 768px) {
