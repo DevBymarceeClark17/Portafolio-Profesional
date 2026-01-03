@@ -257,3 +257,15 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
     .about-stats { justify-content: center; }
     .section { padding: 80px 5%; }
 }
+/* --- OPTIMIZACIÓN MÓVIL EXTREMA --- */
+@media (max-width: 768px) {
+    /* Ocultamos el canvas de la animación */
+    #vanta-fog canvas {
+        opacity: 0 !important;
+    }
+    
+    /* Ponemos un fondo estático bonito en su lugar */
+    #vanta-fog {
+        background: linear-gradient(135deg, var(--bg-latte), var(--coffee-med));
+    }
+}
