@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Portafolio | Marcelino Jimenez</title>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
@@ -34,9 +35,9 @@
             <h1 class="cascade-up">Hola, soy <span class="highlight">Marcelino Jimenez</span></h1>
             
             <div class="hero-socials cascade-up">
-                <a href="https://www.instagram.com/rmi_greyrat17?igsh=MWJwOGxyemUxN2RqMQ==" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/DevBymarceeClark17" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/jimenez-soto-marcelino-17791539b/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://instagram.com/TU_USUARIO" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/TU_USUARIO" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/TU_USUARIO" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
 
             <h2 class="cascade-up">Desarrollador Full Stack Jr. | Estudiante de Ingeniería</h2>
@@ -44,7 +45,7 @@
             
             <div class="hero-buttons cascade-up">
                 <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
-                <a href="jimenezsotomarcelino@gmail.com" class="btn btn-outline">Escríbeme</a>
+                <a href="mailto:tu-correo@alumno.ipn.mx" class="btn btn-outline">Escríbeme</a>
             </div>
         </div>
     </header>
@@ -57,7 +58,7 @@
             </div>
             <div class="about-text">
                 <p>Soy estudiante de <strong>Ingeniería en Informática en la UPIICSA (IPN)</strong>. Me apasiona entender cómo funcionan las cosas a profundidad, por eso tengo una fuerte inclinación hacia el <strong>Backend</strong> y la arquitectura de software.</p>
-                <p style="margin-top: 15px; border-left: 3px solid var(--warm-glow); padding-left: 15px;"><strong>Mi Objetivo:</strong> Aspiro a convertirme en un <strong>Desarrollador Full Stack</strong> especializado en tecnologías escalables. Aunque mi fortaleza actual es Java y SQL, estoy aprendiendo stacks modernos como <strong>React y Node.js</strong> para liderar proyectos de alto impacto.</p>
+                <p style="margin-top: 15px; border-left: 3px solid var(--bronze-pop); padding-left: 15px;"><strong>Mi Objetivo:</strong> Aspiro a convertirme en un <strong>Desarrollador Full Stack</strong> especializado en tecnologías escalables. Aunque mi fortaleza actual es Java y SQL, estoy aprendiendo stacks modernos como <strong>React y Node.js</strong> para liderar proyectos de alto impacto.</p>
                 <div class="about-stats">
                     <div><span class="stat-number">3+</span><span class="stat-desc">Años estudiando</span></div>
                     <div><span class="stat-number">5+</span><span class="stat-desc">Proyectos</span></div>
@@ -92,7 +93,7 @@
                     <h3>Sistema Farmacéutico</h3>
                     <p>Gestión completa de inventario y ventas con reportes automatizados.</p>
                     <div class="tags"><span>Java</span><span>SQL</span></div>
-                    <a href="https://github.com/DevBymarceeClark17/Sistema-Farmaceutico-java" class="btn-small">Ver Código <i class="fab fa-github"></i></a>
+                    <a href="#" class="btn-small">Ver Código <i class="fab fa-github"></i></a>
                 </div>
             </div>
             <div class="project-card">
@@ -110,7 +111,7 @@
         <div class="footer-content">
             <h2>¿Trabajamos juntos?</h2>
             <p>Estoy disponible para becas y proyectos freelance.</p>
-            <a href="jimenezsotomarcelino@gmail.com" class="email-link">jimenezsotomarcelino@gmail.com</a>
+            <a href="mailto:tu-correo@alumno.ipn.mx" class="email-link">jimenezsotomarcelino@gmail.com</a>
             <p class="copyright">Copyright © 2025 Jimenez Soto Marcelino | IPN</p>
         </div>
     </footer>
@@ -119,31 +120,52 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
 
     <script>
-    VANTA.FOG({
-        el: "#vanta-fog",
+        // 1. FORZAR SCROLL ARRIBA AL CARGAR (Soluciona el problema de "bajar directo a proyectos")
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
         
-        // CONTROLES: Desactívalos en móvil para ahorrar batería y CPU
-        mouseControls: true,
-        touchControls: false, // IMPORTANTE: Desactivar toque
-        gyroControls: false,  // IMPORTANTE: Desactivar giroscopio
-        
-        minHeight: 200.00,
-        minWidth: 200.00,
-        
-        // ESCALA: Aquí está el truco de rendimiento
-        scale: 1.00,       // En PC se ve Full HD
-        scaleMobile: 0.40, // En celular renderiza al 40% (¡Mucho más rápido!)
-        
-        // COLORES (Tu paleta Mocha)
-        highlightColor: 0xffe0b2,
-        midtoneColor: 0x9e8c81,
-        lowlightColor: 0x5d4037,
-        baseColor: 0x9e8c81,
-        
-        blurFactor: 0.6,
-        speed: 1.50,
-        zoom: 1.20
-    })
-</script>
+        // 2. CONFIGURACIÓN VANTA (Colores Claros Originales)
+        VANTA.FOG({
+            el: "#vanta-fog",
+            mouseControls: true, touchControls: false, gyroControls: false, // Touch/Gyro false para rendimiento
+            minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00,
+            
+            // COLORES CLAROS ORIGINALES (No opacos)
+            highlightColor: 0xffe0b2, // Espuma clara
+            midtoneColor: 0x9e8c81,   // Tostado medio
+            lowlightColor: 0x5d4037,  // Café oscuro (solo sombras)
+            baseColor: 0x9e8c81,
+            
+            blurFactor: 0.6, speed: 1.50, zoom: 1.20
+        });
+
+        // 3. MENÚ MÓVIL (Lógica robusta)
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if(navLinks.classList.contains('active')){
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -5,25 +5,27 @@
     /* --- PALETA MOCHA (OFICIAL) --- */
     --bg-latte: #9e8c81;       /* Fondo Tostado Medio */
     
-    --coffee-black: #2b1d18;   /* Texto casi negro (Principal) */
-    --coffee-dark: #3e2723;    /* Café fuerte (Botones/Footer) */
-    --coffee-med: #5d4037;     /* Café medio (Textos secundarios) */
+    --coffee-black: #2b1d18;   /* Texto casi negro */
+    --coffee-dark: #3e2723;    /* Café fuerte */
+    --coffee-med: #5d4037;     /* Café medio */
     
-    --foam: #fdfbf7;           /* Blanco roto (Texto en botones oscuros) */
-    --warm-glow: #ffb74d;      /* Luz Ámbar / Dorado (Detalles claros) */
+    --foam: #fdfbf7;           /* Blanco roto */
+    --warm-glow: #ffb74d;      /* Luz Ámbar / Dorado */
     
-    /* EL NUEVO COLOR PARA EL NOMBRE (Bronce Intenso - Mejor contraste) */
+    /* Bronce para contraste en el nombre */
     --bronze-pop: #c05600;     
     
-    --card-glass: rgba(255, 255, 255, 0.45); /* Efecto Cristal */
+    /* ACLARÉ EL CRISTAL PARA QUE NO SE VEA OPACO */
+    --card-glass: rgba(255, 255, 255, 0.65); 
     
     --font-heading: 'Merriweather', serif;
     --font-body: 'Karla', sans-serif;
 }
 
-* {
-    margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+/* Evitamos saltos raros en el scroll */
+html { height: 100%; }
 
 body {
     background-color: var(--bg-latte);
@@ -38,7 +40,8 @@ body {
 
 .noise-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-    opacity: 0.3; pointer-events: none;
+    opacity: 0.15; /* BAJÉ LA OPACIDAD DEL RUIDO PARA QUE SE VEA MÁS LIMPIO */
+    pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
 }
 
@@ -46,8 +49,10 @@ body {
 .navbar {
     display: flex; justify-content: space-between; align-items: center;
     padding: 15px 5%; position: fixed; width: 100%;
-    background: rgba(43, 29, 24, 0.9); /* Fondo oscuro para leer bien el menú */
-    backdrop-filter: blur(10px); z-index: 1000;
+    /* Un poco más transparente y no tan negra */
+    background: rgba(43, 29, 24, 0.95); 
+    backdrop-filter: blur(10px); 
+    z-index: 1001; /* Z-INDEX ALTO PARA QUE SIEMPRE FUNCIONE EL MENÚ */
     border-bottom: 1px solid rgba(255, 183, 77, 0.1);
 }
 
@@ -55,7 +60,6 @@ body {
     font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900; color: var(--foam);
 }
 
-/* El Highlight usa Bronce Intenso + Sombra */
 .highlight { 
     color: var(--bronze-pop); 
     text-shadow: 0px 1px 0px rgba(255,255,255,0.3); 
@@ -69,8 +73,8 @@ body {
 }
 .nav-links a:hover { color: var(--warm-glow); }
 
-/* Botón Hamburguesa (Móvil) */
-.menu-toggle { display: none; font-size: 1.8rem; color: var(--foam); cursor: pointer; }
+/* Botón Hamburguesa */
+.menu-toggle { display: none; font-size: 1.8rem; color: var(--foam); cursor: pointer; z-index: 1002; }
 
 /* --- HERO SECTION --- */
 .hero {
@@ -80,11 +84,11 @@ body {
 
 .hero-content {
     max-width: 800px;
-    background: rgba(255, 255, 255, 0.3); /* Un poco más de luz */
+    background: rgba(255, 255, 255, 0.45); /* Más clarita */
     backdrop-filter: blur(10px);
     padding: 50px 40px; border-radius: 30px;
-    border: 1px solid rgba(255,255,255,0.4);
-    box-shadow: 0 30px 60px rgba(43, 29, 24, 0.2);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 30px 60px rgba(43, 29, 24, 0.15);
 }
 
 /* Animación Cascada */
@@ -229,13 +233,12 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
 .email-link:hover { color: var(--warm-glow); text-shadow: 0 0 20px rgba(255, 183, 77, 0.5); }
 .copyright { margin-top: 40px; font-size: 0.9rem; opacity: 0.7; }
 
-/* Animación */
 @keyframes cascadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE MÓVIL (CORREGIDO) --- */
+/* --- RESPONSIVE MÓVIL (CORREGIDO FINAL) --- */
 @media (max-width: 768px) { 
     /* 1. Menú Móvil */
     .menu-toggle { display: block; }
@@ -244,24 +247,22 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
         position: fixed; top: 0; left: 0; height: 100vh; width: 100%;
         background: rgba(43, 29, 24, 0.98);
         flex-direction: column; align-items: center; justify-content: center;
-        gap: 40px; z-index: 999;
+        gap: 40px; z-index: 1000;
         transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .nav-links.active { transform: translateX(0); }
     .nav-links a { font-size: 1.5rem; color: var(--foam); }
 
-    /* 2. Ajustes Generales */
+    /* 2. Layout */
     .hero { padding-top: 150px; }
     .hero h1 { font-size: 2.5rem; }
     .hero-content { padding: 30px 20px; }
     
     .section { padding: 80px 5%; }
 
-    /* --- 3. ARREGLO DE FOTO Y TEXTO (Safe Fix) --- */
+    /* 3. ARREGLO FOTO (Circular) */
     .about-container { 
-        /* Obligamos a que sea columna vertical */
         flex-direction: column !important; 
-        /* Centramos horizontalmente todos los hijos (foto y texto) */
         align-items: center !important; 
         text-align: center !important; 
         padding: 30px 20px !important;
@@ -269,29 +270,19 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
     }
     
     .about-img { 
-        /* Tamaño fijo para móvil */
-        width: 220px !important; 
-        height: 220px !important; 
-        
-        /* Centrado explícito */
-        margin: 0 auto !important; 
-        
-        /* Evita que Flexbox la aplaste */
-        flex: 0 0 auto !important; 
-        
-        /* Asegura el círculo perfecto */
-        border-radius: 50% !important;
-        aspect-ratio: 1 / 1; /* Esto fuerza a que sea cuadrada/circular siempre */
+        width: 220px !important; height: 220px !important; 
+        margin: 0 auto !important; flex: 0 0 auto !important; 
+        border-radius: 50% !important; aspect-ratio: 1 / 1; 
     }
-
     .about-img img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important; 
-        border-radius: 50% !important;
+        width: 100% !important; height: 100% !important;
+        object-fit: cover !important; border-radius: 50% !important;
     }
 
-    /* 4. Optimización de Rendimiento (Fondo estático) */
+    /* 4. OPTIMIZACIÓN RENDIMIENTO Y COLOR (Claro y Luminoso) */
     #vanta-fog canvas { opacity: 0 !important; }
-    #vanta-fog { background: linear-gradient(135deg, var(--bg-latte), var(--coffee-med)); }
+    #vanta-fog { 
+        /* AQUÍ CAMBIAMOS A UN DEGRADADO CLARO (Beige a Café Suave) */
+        background: linear-gradient(to bottom, #d7ccc8, #a1887f); 
+    }
 }
