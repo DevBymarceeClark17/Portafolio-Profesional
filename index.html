@@ -23,23 +23,29 @@
 
         <div class="nav-links">
             
-            <ul class="nav-list">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#habilidades">Skills</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-            </ul>
+            <div class="glass-menu-card">
+                
+                <div class="menu-brand">Menú</div>
 
-            <div class="menu-card">
-                <p>Conectemos</p>
-                <div class="menu-socials">
-                    <a href="https://instagram.com/TU_USUARIO" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/TU_USUARIO" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/TU_USUARIO" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <ul class="nav-list">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-mi">Sobre Mí</a></li>
+                    <li><a href="#habilidades">Skills</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                </ul>
+
+                <div class="menu-divider"></div>
+
+                <div class="menu-footer">
+                    <p>Conectemos</p>
+                    <div class="menu-socials">
+                        <a href="https://instagram.com/TU_USUARIO" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/TU_USUARIO" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/TU_USUARIO" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div> </div>
     </nav>
 
     <header id="inicio" class="hero">
@@ -147,10 +153,10 @@
             blurFactor: 0.6, speed: 1.50, zoom: 1.20
         });
 
-        // 3. MENÚ MÓVIL (Actualizado)
+        // 3. MENÚ MÓVIL
         const menuToggle = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-        // Seleccionamos los links dentro de la nueva lista
+        // Seleccionamos los links dentro de la nueva estructura
         const navLinksItems = document.querySelectorAll('.nav-list a');
 
         menuToggle.addEventListener('click', () => {
