@@ -15,7 +15,7 @@
     /* Acento Especial (Nombre) */
     --bronze-pop: #c05600;     
     
-    /* Efecto Cristal */
+    /* Efecto Cristal (Solo para escritorio) */
     --card-glass: rgba(255, 255, 255, 0.65); 
     
     /* Tipografías */
@@ -235,7 +235,7 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
 
 
 /* =========================================
-   7. RESPONSIVE MÓVIL (MENÚ PREMIUM)
+   7. RESPONSIVE MÓVIL (MENÚ TARJETA SÓLIDA)
 ========================================= */
 @media (max-width: 768px) { 
     .menu-toggle { display: block; z-index: 1002; }
@@ -243,7 +243,7 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
     /* Overlay Oscuro Borroso */
     .nav-links {
         position: fixed; top: 0; left: 0; height: 100vh; width: 100%;
-        background: rgba(30, 20, 15, 0.7); /* Oscuro con transparencia */
+        background: rgba(30, 20, 15, 0.75); /* Fondo oscuro con transparencia */
         backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         display: flex; flex-direction: column; align-items: center; justify-content: center;
         z-index: 1000;
@@ -254,16 +254,17 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
     
     .nav-links.active { opacity: 1; pointer-events: auto; }
     
-    /* --- TARJETA DE CRISTAL DEL MENÚ --- */
+    /* --- TARJETA DE MENÚ (VERSIÓN SÓLIDA) --- */
+    /* Aquí está el cambio: Color blanco sólido, sin transparencia */
     .glass-menu-card {
         display: block !important;
-        background: rgba(255, 255, 255, 0.85); /* Tarjeta clara */
+        background: #ffffff; /* BLANCO SÓLIDO */
         padding: 40px 30px;
         border-radius: 25px;
         width: 85%; max-width: 350px;
         text-align: center;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 25px 60px rgba(0,0,0,0.4); /* Sombra fuerte para profundidad */
+        border: 2px solid var(--bronze-pop); /* Borde bronce elegante */
         
         /* Animación de subida de la tarjeta */
         transform: scale(0.9) translateY(20px);
