@@ -120,35 +120,55 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
 
     <script>
-        // 1. FORZAR SCROLL ARRIBA AL CARGAR (Soluciona el problema de "bajar directo a proyectos")
-        window.onbeforeunload = function () {
+        // --- 1. SOLUCIÓN AGRESIVA PARA EL SCROLL ---
+        // Esto le dice al navegador: "Olvida dónde estaba el usuario, inicia arriba"
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        // Además, forzamos el salto al inicio al cargar
+        window.onload = function() {
+            window.scrollTo(0, 0);
+            
+            // Y por si acaso el navegador tarda en renderizar, lo forzamos otra vez a los 50ms
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 50);
+        };
+
+        // Si la URL tiene un #hash (ej. index.html#proyectos), lo limpiamos sin recargar
+        // para evitar que salte automáticamente.
+        if (window.location.hash) {
+            history.replaceState(null, null, ' ');
             window.scrollTo(0, 0);
         }
-        
-        // 2. CONFIGURACIÓN VANTA (Colores Claros Originales)
+
+        // --- 2. CONFIGURACIÓN VANTA (Optimizada) ---
         VANTA.FOG({
             el: "#vanta-fog",
-            mouseControls: true, touchControls: false, gyroControls: false, // Touch/Gyro false para rendimiento
+            mouseControls: true, touchControls: false, gyroControls: false,
             minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00,
             
-            // COLORES CLAROS ORIGINALES (No opacos)
-            highlightColor: 0xffe0b2, // Espuma clara
-            midtoneColor: 0x9e8c81,   // Tostado medio
-            lowlightColor: 0x5d4037,  // Café oscuro (solo sombras)
+            // Colores claros originales (Mocha luminoso)
+            highlightColor: 0xffe0b2, 
+            midtoneColor: 0x9e8c81,   
+            lowlightColor: 0x5d4037,  
             baseColor: 0x9e8c81,
             
             blurFactor: 0.6, speed: 1.50, zoom: 1.20
         });
 
-        // 3. MENÚ MÓVIL (Lógica robusta)
+        // --- 3. MENÚ MÓVIL (Lógica Mejorada) ---
         const menuToggle = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         const navLinksItems = document.querySelectorAll('.nav-links a');
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            
+            // Cambiar icono de hamburguesa a X
             const icon = menuToggle.querySelector('i');
-            if(navLinks.classList.contains('active')){
+            if (navLinks.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
             } else {
@@ -157,7 +177,7 @@
             }
         });
 
-        // Cerrar menú al hacer clic en un enlace
+        // Cerrar menú al tocar un enlace
         navLinksItems.forEach(item => {
             item.addEventListener('click', () => {
                 navLinks.classList.remove('active');
