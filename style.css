@@ -1,8 +1,8 @@
-/* --- CONFIGURACIÓN Y FUENTES --- */
+/* --- 1. CONFIGURACIÓN Y FUENTES --- */
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Merriweather:wght@700;900&display=swap');
 
 :root {
-    /* --- PALETA MOCHA --- */
+    /* --- PALETA MOCHA (OFICIAL) --- */
     --bg-latte: #9e8c81;       /* Fondo Tostado Medio */
     
     --coffee-black: #2b1d18;   /* Texto casi negro (Principal) */
@@ -12,7 +12,7 @@
     --foam: #fdfbf7;           /* Blanco roto (Texto en botones oscuros) */
     --warm-glow: #ffb74d;      /* Luz Ámbar / Dorado (Detalles claros) */
     
-    /* EL NUEVO COLOR PARA EL NOMBRE (Bronce Intenso) */
+    /* EL NUEVO COLOR PARA EL NOMBRE (Bronce Intenso - Mejor contraste) */
     --bronze-pop: #c05600;     
     
     --card-glass: rgba(255, 255, 255, 0.45); /* Efecto Cristal */
@@ -55,10 +55,11 @@ body {
     font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900; color: var(--foam);
 }
 
-/* El Highlight en el logo usa el Bronce también para consistencia */
+/* El Highlight usa Bronce Intenso + Sombra */
 .highlight { 
     color: var(--bronze-pop); 
-    text-shadow: 0px 1px 0px rgba(255,255,255,0.3); /* Pequeño brillo para contraste */
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.3); 
+    font-weight: 900;
 } 
 
 /* Menú Escritorio */
@@ -68,10 +69,10 @@ body {
 }
 .nav-links a:hover { color: var(--warm-glow); }
 
-/* Menu movil */
+/* Botón Hamburguesa (Móvil) */
 .menu-toggle { display: none; font-size: 1.8rem; color: var(--foam); cursor: pointer; }
 
-/* --- Seccion "hero" --- */
+/* --- HERO SECTION --- */
 .hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     text-align: center; padding: 120px 20px 50px; position: relative; z-index: 1;
@@ -79,7 +80,7 @@ body {
 
 .hero-content {
     max-width: 800px;
-    background: rgba(255, 255, 255, 0.3); 
+    background: rgba(255, 255, 255, 0.3); /* Un poco más de luz */
     backdrop-filter: blur(10px);
     padding: 50px 40px; border-radius: 30px;
     border: 1px solid rgba(255,255,255,0.4);
@@ -234,46 +235,63 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE MÓVIL --- */
-@media (max-width: 768px) {
-    /* ... (tus otras reglas de menú y hero) ... */
+/* --- RESPONSIVE MÓVIL (CORREGIDO) --- */
+@media (max-width: 768px) { 
+    /* 1. Menú Móvil */
+    .menu-toggle { display: block; }
+    
+    .nav-links {
+        position: fixed; top: 0; left: 0; height: 100vh; width: 100%;
+        background: rgba(43, 29, 24, 0.98);
+        flex-direction: column; align-items: center; justify-content: center;
+        gap: 40px; z-index: 999;
+        transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-links.active { transform: translateX(0); }
+    .nav-links a { font-size: 1.5rem; color: var(--foam); }
 
-    .about-img {
-        /* Fuerza Bruta: Obligamos a que sea de 200x200 */
-        width: 200px !important;
-        height: 200px !important;
-        min-width: 200px !important; /* Asegura que no se aplaste */
-        min-height: 200px !important; /* Asegura que no se aplaste */
-        
-        /* Rompemos el flexbox del escritorio */
-        flex: none !important; 
-        
-        /* Aseguramos el círculo */
-        border-radius: 50% !important;
-        margin: 0 auto 30px !important;
+    /* 2. Ajustes Generales */
+    .hero { padding-top: 150px; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero-content { padding: 30px 20px; }
+    
+    .section { padding: 80px 5%; }
+
+    /* --- 3. ARREGLO DE FOTO Y TEXTO (Safe Fix) --- */
+    .about-container { 
+        /* Obligamos a que sea columna vertical */
+        flex-direction: column !important; 
+        /* Centramos horizontalmente todos los hijos (foto y texto) */
+        align-items: center !important; 
+        text-align: center !important; 
+        padding: 30px 20px !important;
+        gap: 30px !important; 
     }
     
-    /* Aseguramos que la imagen interna se adapte al círculo */
+    .about-img { 
+        /* Tamaño fijo para móvil */
+        width: 220px !important; 
+        height: 220px !important; 
+        
+        /* Centrado explícito */
+        margin: 0 auto !important; 
+        
+        /* Evita que Flexbox la aplaste */
+        flex: 0 0 auto !important; 
+        
+        /* Asegura el círculo perfecto */
+        border-radius: 50% !important;
+        aspect-ratio: 1 / 1; /* Esto fuerza a que sea cuadrada/circular siempre */
+    }
+
     .about-img img {
         width: 100% !important;
         height: 100% !important;
-        object-fit: cover !important;
+        object-fit: cover !important; 
+        border-radius: 50% !important;
     }
 
-    /* ... (resto de reglas) ... */
-}
-
-
-
-/* --- OPTIMIZACIÓN MÓVIL EXTREMA --- */
-@media (max-width: 768px) {
-    /* Ocultamos el canvas de la animación */
-    #vanta-fog canvas {
-        opacity: 0 !important;
-    }
-    
-    /* Ponemos un fondo estático bonito en su lugar */
-    #vanta-fog {
-        background: linear-gradient(135deg, var(--bg-latte), var(--coffee-med));
-    }
+    /* 4. Optimización de Rendimiento (Fondo estático) */
+    #vanta-fog canvas { opacity: 0 !important; }
+    #vanta-fog { background: linear-gradient(135deg, var(--bg-latte), var(--coffee-med)); }
 }
