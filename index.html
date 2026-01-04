@@ -21,12 +21,25 @@
             <i class="fas fa-bars"></i>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#sobre-mi">Sobre Mí</a></li>
-            <li><a href="#habilidades">Skills</a></li>
-            <li><a href="#proyectos">Proyectos</a></li>
-        </ul>
+        <div class="nav-links">
+            
+            <ul class="nav-list">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#habilidades">Skills</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+            </ul>
+
+            <div class="menu-card">
+                <p>Conectemos</p>
+                <div class="menu-socials">
+                    <a href="https://instagram.com/TU_USUARIO" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/TU_USUARIO" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/TU_USUARIO" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+        </div>
     </nav>
 
     <header id="inicio" class="hero">
@@ -120,70 +133,41 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
 
     <script>
-        // --- 1. SOLUCIÓN AGRESIVA PARA EL SCROLL ---
-        // Esto le dice al navegador: "Olvida dónde estaba el usuario, inicia arriba"
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'manual';
-        }
+        // 1. SCROLL RESTORATION
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        window.onload = function() { window.scrollTo(0, 0); setTimeout(() => window.scrollTo(0, 0), 50); };
+        if (window.location.hash) { history.replaceState(null, null, ' '); window.scrollTo(0, 0); }
 
-        // Además, forzamos el salto al inicio al cargar
-        window.onload = function() {
-            window.scrollTo(0, 0);
-            
-            // Y por si acaso el navegador tarda en renderizar, lo forzamos otra vez a los 50ms
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-            }, 50);
-        };
-
-        // Si la URL tiene un #hash (ej. index.html#proyectos), lo limpiamos sin recargar
-        // para evitar que salte automáticamente.
-        if (window.location.hash) {
-            history.replaceState(null, null, ' ');
-            window.scrollTo(0, 0);
-        }
-
-        // --- 2. CONFIGURACIÓN VANTA (Optimizada) ---
+        // 2. VANTA FOG
         VANTA.FOG({
             el: "#vanta-fog",
             mouseControls: true, touchControls: false, gyroControls: false,
             minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00,
-            
-            // Colores claros originales (Mocha luminoso)
-            highlightColor: 0xffe0b2, 
-            midtoneColor: 0x9e8c81,   
-            lowlightColor: 0x5d4037,  
-            baseColor: 0x9e8c81,
-            
+            highlightColor: 0xffe0b2, midtoneColor: 0x9e8c81, lowlightColor: 0x5d4037, baseColor: 0x9e8c81,
             blurFactor: 0.6, speed: 1.50, zoom: 1.20
         });
 
-        // --- 3. MENÚ MÓVIL (Lógica Mejorada) ---
+        // 3. MENÚ MÓVIL (Actualizado)
         const menuToggle = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-        const navLinksItems = document.querySelectorAll('.nav-links a');
+        // Seleccionamos los links dentro de la nueva lista
+        const navLinksItems = document.querySelectorAll('.nav-list a');
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
-            
-            // Cambiar icono de hamburguesa a X
             const icon = menuToggle.querySelector('i');
             if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
             } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
             }
         });
 
-        // Cerrar menú al tocar un enlace
         navLinksItems.forEach(item => {
             item.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 const icon = menuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
             });
         });
     </script>
