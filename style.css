@@ -5,17 +5,17 @@
     /* --- PALETA MOCHA (OFICIAL) --- */
     --bg-latte: #9e8c81;       /* Fondo Tostado Medio */
     
-    --coffee-black: #2b1d18;   /* Texto casi negro */
-    --coffee-dark: #3e2723;    /* Café fuerte */
-    --coffee-med: #5d4037;     /* Café medio */
+    --coffee-black: #2b1d18;   /* Texto casi negro (Principal) */
+    --coffee-dark: #3e2723;    /* Café fuerte (Botones/Footer) */
+    --coffee-med: #5d4037;     /* Café medio (Textos secundarios) */
     
-    --foam: #fdfbf7;           /* Blanco roto */
+    --foam: #fdfbf7;           /* Blanco roto (Texto en botones oscuros) */
     --warm-glow: #ffb74d;      /* Luz Ámbar / Dorado */
     
-    /* Bronce para contraste en el nombre */
+    /* Color Bronce Intenso (Para resaltar tu nombre) */
     --bronze-pop: #c05600;     
     
-    /* ACLARÉ EL CRISTAL PARA QUE NO SE VEA OPACO */
+    /* Cristal Luminoso */
     --card-glass: rgba(255, 255, 255, 0.65); 
     
     --font-heading: 'Merriweather', serif;
@@ -24,7 +24,6 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-/* Evitamos saltos raros en el scroll */
 html { height: 100%; }
 
 body {
@@ -40,19 +39,17 @@ body {
 
 .noise-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-    opacity: 0.15; /* BAJÉ LA OPACIDAD DEL RUIDO PARA QUE SE VEA MÁS LIMPIO */
-    pointer-events: none;
+    opacity: 0.15; pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
 }
 
-/* --- NAVEGACIÓN --- */
+/* --- NAVEGACIÓN (ESCRITORIO) --- */
 .navbar {
     display: flex; justify-content: space-between; align-items: center;
     padding: 15px 5%; position: fixed; width: 100%;
-    /* Un poco más transparente y no tan negra */
     background: rgba(43, 29, 24, 0.95); 
     backdrop-filter: blur(10px); 
-    z-index: 1001; /* Z-INDEX ALTO PARA QUE SIEMPRE FUNCIONE EL MENÚ */
+    z-index: 1001; 
     border-bottom: 1px solid rgba(255, 183, 77, 0.1);
 }
 
@@ -66,15 +63,15 @@ body {
     font-weight: 900;
 } 
 
-/* Menú Escritorio */
 .nav-links { list-style: none; display: flex; gap: 30px; }
 .nav-links a {
     text-decoration: none; color: #d7ccc8; transition: 0.3s; font-weight: 700; font-size: 0.95rem;
 }
 .nav-links a:hover { color: var(--warm-glow); }
 
-/* Botón Hamburguesa */
-.menu-toggle { display: none; font-size: 1.8rem; color: var(--foam); cursor: pointer; z-index: 1002; }
+/* Botón Hamburguesa (oculto en PC) */
+.menu-toggle { display: none; font-size: 1.8rem; color: var(--foam); cursor: pointer; }
+
 
 /* --- HERO SECTION --- */
 .hero {
@@ -84,14 +81,14 @@ body {
 
 .hero-content {
     max-width: 800px;
-    background: rgba(255, 255, 255, 0.45); /* Más clarita */
+    background: rgba(255, 255, 255, 0.45);
     backdrop-filter: blur(10px);
     padding: 50px 40px; border-radius: 30px;
     border: 1px solid rgba(255,255,255,0.6);
     box-shadow: 0 30px 60px rgba(43, 29, 24, 0.15);
 }
 
-/* Animación Cascada */
+/* Animación Cascada (Elementos subiendo) */
 .cascade-up {
     opacity: 0; transform: translateY(30px);
     animation: cascadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -148,6 +145,7 @@ body {
     background: var(--warm-glow); color: var(--coffee-black);
     transform: translateY(-3px) scale(1.1);
 }
+
 
 /* --- SECCIONES GENERALES --- */
 .section { padding: 100px 10%; position: relative; z-index: 1; }
@@ -233,34 +231,84 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
 .email-link:hover { color: var(--warm-glow); text-shadow: 0 0 20px rgba(255, 183, 77, 0.5); }
 .copyright { margin-top: 40px; font-size: 0.9rem; opacity: 0.7; }
 
+/* Animación Global */
 @keyframes cascadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE MÓVIL (CORREGIDO FINAL) --- */
+/* =========================================
+   RESPONSIVE MÓVIL (DISEÑO PREMIUM FINAL)
+========================================= */
 @media (max-width: 768px) { 
-    /* 1. Menú Móvil */
-    .menu-toggle { display: block; }
+    /* 1. Menú Móvil - EL CAMBIO PREMIUM */
+    .menu-toggle { 
+        display: block; 
+        z-index: 1002; /* Siempre encima del fondo del menú */
+    }
     
     .nav-links {
         position: fixed; top: 0; left: 0; height: 100vh; width: 100%;
-        background: rgba(43, 29, 24, 0.98);
+        
+        /* FONDO PREMIUM: Café muy oscuro con transparencia y Blur */
+        background: rgba(43, 29, 24, 0.95);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        
         flex-direction: column; align-items: center; justify-content: center;
-        gap: 40px; z-index: 1000;
-        transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 50px; /* Espaciado elegante */
+        z-index: 1000;
+        
+        /* Transición de Aparición */
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.4s ease;
+        transform: none; /* Quitamos el slide lateral, usamos fade */
     }
-    .nav-links.active { transform: translateX(0); }
-    .nav-links a { font-size: 1.5rem; color: var(--foam); }
+    
+    /* Cuando el menú está activo */
+    .nav-links.active { 
+        opacity: 1; pointer-events: auto; 
+    }
+    
+    /* Animación de los Items del Menú */
+    .nav-links li {
+        opacity: 0; transform: translateY(20px);
+        transition: 0.4s ease;
+    }
 
-    /* 2. Layout */
+    /* Cascada al abrir */
+    .nav-links.active li {
+        opacity: 1; transform: translateY(0);
+    }
+    .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links.active li:nth-child(2) { transition-delay: 0.2s; }
+    .nav-links.active li:nth-child(3) { transition-delay: 0.3s; }
+    .nav-links.active li:nth-child(4) { transition-delay: 0.4s; }
+
+    /* Estilo de los Enlaces (Tipografía Grande y Elegante) */
+    .nav-links a { 
+        font-family: var(--font-heading); /* Merriweather */
+        font-size: 2.2rem; 
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.9);
+        position: relative;
+    }
+
+    /* Subrayado Dorado al Tocar */
+    .nav-links a::after {
+        content: ''; position: absolute; bottom: -5px; left: 50%; width: 0%; height: 3px;
+        background: var(--warm-glow); transition: 0.3s ease; transform: translateX(-50%);
+    }
+    .nav-links a:hover, .nav-links a:active { color: var(--warm-glow); }
+    .nav-links a:hover::after { width: 100%; }
+
+
+    /* 2. Ajustes de Layout */
     .hero { padding-top: 150px; }
     .hero h1 { font-size: 2.5rem; }
     .hero-content { padding: 30px 20px; }
-    
     .section { padding: 80px 5%; }
 
-    /* 3. ARREGLO FOTO (Circular) */
+    /* 3. ARREGLO FOTO (Círculo Perfecto Centrado) */
     .about-container { 
         flex-direction: column !important; 
         align-items: center !important; 
@@ -268,21 +316,20 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
         padding: 30px 20px !important;
         gap: 30px !important; 
     }
-    
     .about-img { 
         width: 220px !important; height: 220px !important; 
         margin: 0 auto !important; flex: 0 0 auto !important; 
         border-radius: 50% !important; aspect-ratio: 1 / 1; 
+        border: 4px solid var(--bronze-pop);
     }
     .about-img img {
         width: 100% !important; height: 100% !important;
         object-fit: cover !important; border-radius: 50% !important;
     }
 
-    /* 4. OPTIMIZACIÓN RENDIMIENTO Y COLOR (Claro y Luminoso) */
+    /* 4. OPTIMIZACIÓN RENDIMIENTO (Fondo Estático Luminoso) */
     #vanta-fog canvas { opacity: 0 !important; }
     #vanta-fog { 
-        /* AQUÍ CAMBIAMOS A UN DEGRADADO CLARO (Beige a Café Suave) */
         background: linear-gradient(to bottom, #d7ccc8, #a1887f); 
     }
 }
