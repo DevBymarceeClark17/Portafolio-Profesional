@@ -234,31 +234,37 @@ footer h2 { font-family: var(--font-heading); color: var(--warm-glow); margin-bo
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Seccion MÓVIL Responsiva --- */
-@media (max-width: 768px) { 
-    .menu-toggle { display: block; }
-    
-    .nav-links {
-        position: fixed; top: 0; left: 0; height: 100vh; width: 100%;
-        background: rgba(43, 29, 24, 0.98);
-        flex-direction: column; align-items: center; justify-content: center;
-        gap: 40px; z-index: 999;
-        transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* --- RESPONSIVE MÓVIL --- */
+@media (max-width: 768px) {
+    /* ... (tus otras reglas de menú y hero) ... */
+
+    .about-img {
+        /* Fuerza Bruta: Obligamos a que sea de 200x200 */
+        width: 200px !important;
+        height: 200px !important;
+        min-width: 200px !important; /* Asegura que no se aplaste */
+        min-height: 200px !important; /* Asegura que no se aplaste */
+        
+        /* Rompemos el flexbox del escritorio */
+        flex: none !important; 
+        
+        /* Aseguramos el círculo */
+        border-radius: 50% !important;
+        margin: 0 auto 30px !important;
     }
-    .nav-links.active { transform: translateX(0); }
-    .nav-links a { font-size: 1.5rem; color: var(--foam); }
-
-    .hero { padding-top: 150px; }
-    .hero h1 { font-size: 2.5rem; }
-    .hero-content { padding: 30px 20px; }
     
-    .about-container { flex-direction: column; text-align: center; padding: 30px; }
-    .about-img { width: 200px; height: 200px; flexÑ 0 0 auto; margin: 0 auto 30px; }
-    .about-stats { justify-content: center; }
-    .section { padding: 80px 5%; }
+    /* Aseguramos que la imagen interna se adapte al círculo */
+    .about-img img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
 
-
+    /* ... (resto de reglas) ... */
 }
+
+
+
 /* --- OPTIMIZACIÓN MÓVIL EXTREMA --- */
 @media (max-width: 768px) {
     /* Ocultamos el canvas de la animación */
