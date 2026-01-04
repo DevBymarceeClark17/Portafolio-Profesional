@@ -45,7 +45,9 @@
                     </div>
                 </div>
 
-            </div> </div>
+            </div>
+
+        </div>
     </nav>
 
     <header id="inicio" class="hero">
@@ -64,7 +66,7 @@
             
             <div class="hero-buttons cascade-up">
                 <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
-                <a href="jimenezsotomarcelino@gmail.com" class="btn btn-outline">Escríbeme</a>
+                <a href="mailto:jimenezsotomarcelino@gmail.com" class="btn btn-outline">Escríbeme</a>
             </div>
         </div>
     </header>
@@ -130,7 +132,13 @@
         <div class="footer-content">
             <h2>¿Trabajamos juntos?</h2>
             <p>Estoy disponible para becas y proyectos freelance.</p>
-            <a href="jimenezsotomarcelino@gmail.com" class="email-link">jimenezsotomarcelino@gmail.com</a>
+            
+            <a href="mailto:jimenezsotomarcelino@gmail.com" class="email-link">jimenezsotomarcelino@gmail.com</a>
+            
+            <p class="phone-link">
+                <i class="fas fa-phone-alt"></i> <a href="tel:5645394821">56 4539 4821</a>
+            </p>
+
             <p class="copyright">Copyright © 2025 Jimenez Soto Marcelino | IPN</p>
         </div>
     </footer>
@@ -156,7 +164,6 @@
         // 3. MENÚ MÓVIL
         const menuToggle = document.getElementById('mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-        // Seleccionamos los links dentro de la nueva estructura
         const navLinksItems = document.querySelectorAll('.nav-list a');
 
         menuToggle.addEventListener('click', () => {
